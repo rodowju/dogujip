@@ -1,0 +1,31 @@
+/* 더치페이 송금 앱 연결 (2026-11-20). style.css 다음에 불러옴 */
+.pay-section { margin-top: 18px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--bg); }
+.pay-section > summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 700; cursor: pointer; list-style: none; }
+.pay-section > summary::-webkit-details-marker { display: none; }
+.pay-section > summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--muted); }
+.pay-section[open] > summary::after { content: "−"; }
+.pay-section > summary .mini { margin-left: auto; }
+.pay-section[open] { padding-bottom: 12px; }
+.pay-help { margin: 6px 0 10px; font-size: 14px; }
+.pay-help summary { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-weight: 700; cursor: pointer; }
+.pay-help ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.pay-help li { margin: 4px 0; }
+.pay-list { display: grid; gap: 8px; }
+.pay-person { border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: var(--card); display: grid; gap: 6px; }
+.pay-name { display: flex; align-items: center; gap: 6px; }
+.pay-badge { display: none; font-size: 12px; font-weight: 700; color: var(--green); border: 1px solid var(--green); border-radius: 999px; padding: 1px 8px; }
+.pay-person.gets .pay-badge { display: inline-block; }
+.pay-field { display: grid; gap: 2px; }
+.pay-field input[aria-invalid="true"] { border-color: var(--danger); }
+.pay-err { color: var(--danger); font-size: 13px; margin: 0; }
+.pay-err:empty { display: none; }
+.transfers li { flex-direction: column; align-items: stretch; gap: 8px; }
+.transfers .tr-line { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.pay-acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.pay-btn { flex: 1 1 auto; min-height: 44px; padding: 0 12px; font-size: 14.5px; }
+.pay-dest { margin: -2px 0 0; font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+.sent-check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14.5px; font-weight: 600; cursor: pointer; }
+.sent-check input { width: 22px; height: 22px; accent-color: var(--green); }
+.transfers li.sent { background: color-mix(in srgb, var(--green) 14%, var(--card)); }
+.transfers li.sent .sent-check { color: var(--green); }
+.transfers li.sent .amt { text-decoration: line-through; text-decoration-thickness: 2px; }

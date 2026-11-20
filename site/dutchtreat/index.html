@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>더치페이 - 도구집</title>
+<meta name="description" content="설치·가입 없이 1차·2차, 안 마신 사람까지 나눠 계산하는 더치페이 계산기. 결과 링크로 모두가 같은 화면">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dutch.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#/"><span class="brand-mark" aria-hidden="true">도</span>도구집</a>
+  <span class="tag">설치·가입 없음</span>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="foot">
+  <p>입력한 내용은 이 기기 안에서 계산되며 이 사이트 서버로 보내지 않습니다. 공유 링크에는 입력한 이름·항목·금액(넣었다면 송금 아이디·링크와 보냈어요 표시까지)이 그대로 담겨, 링크를 받은 사람과 링크를 보낸 메신저에 남습니다. 필요한 사람에게만 보내시고, 실명 대신 별명을 써도 됩니다. 송금은 토스·카카오페이 앱에서 이루어지며 이 사이트는 돈이나 계좌 정보를 받지 않습니다. 최근 입력한 이름은 이 기기 브라우저에 저장됩니다.</p>
+  <p>도구집 다른 도구: <a href="https://laddergame.dogujip.com/">사다리타기</a> · <a href="https://dogujip.com/">도구집 홈</a></p>
+  <p><a href="privacy.html">개인정보 처리 안내</a></p>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="js/core.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/dutch.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
