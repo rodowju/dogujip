@@ -213,6 +213,20 @@
       ])
     ]);
 
+    // 송금 앱 연결 칸: 아이디·링크가 이미 들어 있으면 펼쳐서 보여 줌
+    var paySec = h('details', { class: 'pay-section' }, [
+      h('summary', null, [h('span', { text: '송금 앱 연결 (선택)' }), h('span', { class: 'mini', text: '토스·카카오페이' })]),
+      h('p', { class: 'help', text: '받을 사람이 토스 아이디나 카카오페이 송금 링크를 넣어 두면, 결과에서 바로 송금 앱을 열 수 있어요. 계좌번호는 받지 않습니다. 넣은 아이디·링크는 공유 링크에 담겨요. 공유 링크는 누구나 고쳐서 다시 보낼 수 있으니, 보내는 사람은 송금 앱에서 받는 사람 이름을 꼭 확인하세요.' }),
+      payHelp, payBox
+    ]);
+    if (st.w.some(function (x) { return x && (x.t || x.k); })) paySec.open = true;
+    function openPay() {
+      paySec.open = true;
+      var target = payBox.querySelector('.pay-person.gets input') || payBox.querySelector('input');
+      paySec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target) setTimeout(function () { target.focus({ preventScroll: true }); }, 350);
+    }
+
     // --- 올림 단위 ---
     function drawUnits() {
       unitBox.textContent = '';
@@ -301,6 +315,11 @@
       resultBox.appendChild(h('h3', { text: res.transfers.length ? '이렇게 보내면 끝 · ' + res.transfers.length + '번' : '보낼 돈이 없어요' }));
       if (res.transfers.length) {
         resultBox.appendChild(tl);
+        var anyPay = res.transfers.some(function (t) { var w = st.w[t.to]; return w && (w.t || w.k); });
+        if (!anyPay) resultBox.appendChild(h('div', { class: 'pay-hint' }, [
+          h('p', { text: '받을 사람이 토스 아이디나 카카오페이 송금 링크를 넣으면, 위 목록에 [토스 열기]·[카카오페이 열기] 버튼이 생겨요.' }),
+          h('button', { type: 'button', class: 'btn small', text: '송금 버튼 붙이기', onclick: openPay })
+        ]));
         resultBox.appendChild(h('p', { class: 'note', text: "송금 앱에서 받는 사람 이름이 맞는지 꼭 확인하고 보내세요. 공유 링크는 누구나 고쳐서 다시 보낼 수 있어요. '보냈어요'는 보낸 사람이 직접 누르는 표시일 뿐 실제 입금 확인이 아니에요. 체크 상태도 공유 링크에 담겨, 다시 공유하면 모두 같은 표시를 봅니다. 송금은 토스·카카오페이 앱에서 이루어지며 이 사이트는 돈이나 계좌 정보를 받지 않습니다. 토스·카카오페이는 각 회사의 상표이며, 도구집은 두 회사와 제휴 관계가 없습니다." }));
       }
       if (res.unit > 1 || res.extraTotal > 0.0001) {
@@ -328,11 +347,7 @@
     root.appendChild(itemsBox);
     root.appendChild(h('div', { class: 'field-label', text: '보낼 금액 올림 단위' }));
     root.appendChild(unitBox);
-    root.appendChild(h('details', { class: 'pay-section' }, [
-      h('summary', null, [h('span', { text: '송금 앱 연결 (선택)' }), h('span', { class: 'mini', text: '토스·카카오페이' })]),
-      h('p', { class: 'help', text: '받을 사람이 토스 아이디나 카카오페이 송금 링크를 넣어 두면, 결과에서 바로 송금 앱을 열 수 있어요. 계좌번호는 받지 않습니다. 넣은 아이디·링크는 공유 링크에 담겨요. 공유 링크는 누구나 고쳐서 다시 보낼 수 있으니, 보내는 사람은 송금 앱에서 받는 사람 이름을 꼭 확인하세요.' }),
-      payHelp, payBox
-    ]));
+    root.appendChild(paySec);
     root.appendChild(resultBox);
     root.appendChild(h('div', { class: 'row-btns minor' }, [h('button', { type: 'button', class: 'btn ghost', text: '모두 지우고 새로', onclick: function () {
       if (!confirm('입력한 내용을 모두 지울까요?')) return;

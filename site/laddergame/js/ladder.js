@@ -299,7 +299,8 @@
       status.textContent = cfg.n[i] + ' 내려가는 중…';
 
       var m = lengthPx(t.pts);
-      var dur = skipAll || reduceMotion() ? 0 : Math.max(1500, Math.min(2000, 1500 + m.len * 0.4));
+      // 공 이동은 사다리의 핵심이라 휴대폰 '애니메이션 줄이기'·절전 설정과 상관없이 보여 줌(건너뛰기만 즉시)
+      var dur = skipAll ? 0 : Math.max(1500, Math.min(2000, 1500 + m.len * 0.4));
       var finished = false, start = null, guard;
 
       function place(dist) {
@@ -323,7 +324,7 @@
         if (finished) return; finished = true; clearTimeout(guard);
         place(m.len); current = null;
         ball.classList.add('landed');
-        setTimeout(function () { if (ball.parentNode) ball.parentNode.removeChild(ball); }, reduceMotion() ? 0 : 400);
+        setTimeout(function () { if (ball.parentNode) ball.parentNode.removeChild(ball); }, skipAll ? 0 : 400);
         nameBtns[i].classList.remove('going'); nameBtns[i].classList.add('done');
         reveal(i, t.end);
         if (done) done();
@@ -383,7 +384,7 @@
         var i = queue.shift();
         if (i == null) { busy = false; skipBtn.hidden = true; return; }
         busy = true;
-        animate(i, function () { setTimeout(next, skipAll || reduceMotion() ? 0 : 350); });
+        animate(i, function () { setTimeout(next, skipAll ? 0 : 450); });
       })();
     }
 

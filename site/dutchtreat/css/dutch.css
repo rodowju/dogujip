@@ -29,3 +29,5 @@
 .transfers li.sent { background: color-mix(in srgb, var(--green) 14%, var(--card)); }
 .transfers li.sent .sent-check { color: var(--green); }
 .transfers li.sent .amt { text-decoration: line-through; text-decoration-thickness: 2px; }
+.pay-hint { margin: 10px 0 4px; padding: 10px 12px; border: 1px dashed var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.pay-hint p { margin: 0; font-size: 14px; flex: 1 1 200px; }
