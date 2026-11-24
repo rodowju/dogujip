@@ -1,0 +1,17 @@
+{
+  "name": "더치페이 - 도구집",
+  "short_name": "더치페이",
+  "description": "1차·2차, 안 마신 사람까지 나눠 계산하는 더치페이 계산기",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f2e9",
+  "theme_color": "#f6f2e9",
+  "lang": "ko",
+  "icons": [
+    { "src": "icons/app-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/app-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/app-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

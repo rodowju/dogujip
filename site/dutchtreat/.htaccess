@@ -32,4 +32,10 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 <FilesMatch "\.(html|css|js|webmanifest|svg|txt)$">
 Header set Cache-Control "no-cache"
 </FilesMatch>
+
+# 홈 화면 추가용 서비스 워커: 같은 사이트 파일만 받아 저장(오프라인용). 화면(페이지)은 위 설정대로 어디로도 연결하지 않음
+<Files "sw.js">
+Header always set Content-Security-Policy "default-src 'none'; connect-src 'self'"
+Header set Cache-Control "no-cache"
+</Files>
 </IfModule>
